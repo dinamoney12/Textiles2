@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Danura Textiles - Quality fabrics and textiles in Sri Lanka">
+    <meta name="keywords" content="textiles, fabrics, sarees, Sri Lanka, clothing">
+    <title>Danudara Textile - Quality Fabrics & Textiles</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/.png">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Sinhala:wght@400;500;600&family=Noto+Sans+Tamil:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader-container">
+            <div class="logo-loader">
+                <img src="assets/logo.png" alt="Danura Textiles" class="loader-logo">
+            </div>
+            <div class="loader-spinner">
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+            </div>
+            <p class="loader-text" data-translate="loading">Loading...</p>
+            <div class="loader-progress">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Language Selector - Floating -->
+    <div class="language-selector">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="si">සිං</button>
+        <button class="lang-btn" data-lang="ta">த</button>
+    </div>
+
+    <!-- Notice Banner -->
+    <div id="notice-banner" class="notice-banner" style="display: none;">
+        <div class="notice-content">
+            <i class="fas fa-bullhorn"></i>
+            <span id="notice-text"></span>
+            <button class="notice-close"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <a href="#" class="logo">
+                    <img src="assets/logo.png" alt="Danura Textiles" class="logo-img">
+                    <span class="logo-text">Danudara Textiles</span>
+                </a>
+
+                <!-- Navigation -->
+                <nav class="nav" id="nav">
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="#home" class="nav-link active" data-translate="nav_home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#products" class="nav-link" data-translate="nav_products">Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#categories" class="nav-link" data-translate="nav_categories">Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#contact" class="nav-link" data-translate="nav_contact">Contact Us</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Header Actions -->
+                <div class="header-actions">
+                    <!-- Search -->
+                    <button class="action-btn search-btn" id="searchBtn">
+                        <i class="fas fa-search"></i>
+                    </button>
+
+                    <!-- Cart -->
+                    <button class="action-btn cart-btn" id="cartBtn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </button>
+
+                    <!-- Mobile Menu Toggle -->
+                    <button class="menu-toggle" id="menuToggle">
+                        <span class="hamburger"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <button class="search-close" id="searchClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="search-input-wrapper">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search products..." data-translate-placeholder="search_placeholder">
+            </div>
+            <div class="search-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3 data-translate="cart_title">Shopping Cart</h3>
+            <button class="cart-close" id="cartClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be dynamically inserted -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-subtotal">
+                <span data-translate="subtotal">Subtotal:</span>
+                <span id="cartSubtotal">LKR 0.00</span>
+            </div>
+            <button class="btn btn-primary btn-checkout" id="checkoutBtn" data-translate="proceed_checkout">
+                Proceed to Checkout
+            </button>
+        </div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-slider">
+                <div class="hero-slide active">
+                    <div class="hero-bg" style="background-image: url('https://images.unsplash.com/photo-1558171813-4c088753af8f?w=1600')"></div>
+                    <div class="hero-content">
+                        <div class="container">
+                            <div class="hero-text" data-aos="fade-up">
+                                <h1 class="hero-title" data-translate="hero_title">Premium Quality <span>Textiles</span></h1>
+                                <p class="hero-subtitle" data-translate="hero_subtitle">Discover our exclusive collection of fabrics</p>
+                                <a href="#products" class="btn btn-primary btn-lg" data-translate="shop_now">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-indicators">
+                <button class="indicator active"></button>
+                <button class="indicator"></button>
+                <button class="indicator"></button>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="container">
+                <div class="features-grid">
+                    <div class="feature-item" data-aos="fade-up" data-aos-delay="0">
+                        <div class="feature-icon">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <h4 data-translate="feature_delivery">Island-wide Delivery</h4>
+                        <p data-translate="feature_delivery_desc">Fast delivery across Sri Lanka</p>
+                    </div>
+                    <div class="feature-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="feature-icon">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <h4 data-translate="feature_quality">Premium Quality</h4>
+                        <p data-translate="feature_quality_desc">100% authentic products</p>
+                    </div>
+                    <div class="feature-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="feature-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h4 data-translate="feature_support">24/7 Support</h4>
+                        <p data-translate="feature_support_desc">Dedicated customer service</p>
+                    </div>
+                    <div class="feature-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4 data-translate="feature_secure">Secure Payment</h4>
+                        <p data-translate="feature_secure_desc">Multiple payment options</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="categories-section" id="categories">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2 class="section-title" data-translate="categories_title">Shop by Category</h2>
+                    <p class="section-subtitle" data-translate="categories_subtitle">Browse our wide range of textile categories</p>
+                </div>
+                <div class="categories-grid" id="categoriesGrid">
+                    <!-- Categories will be loaded dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Products Section -->
+        <section class="products-section" id="products">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2 class="section-title" data-translate="featured_title">Featured Products</h2>
+                    <p class="section-subtitle" data-translate="featured_subtitle">Handpicked selections for you</p>
+                </div>
+                
+                <!-- Category Filter -->
+                <div class="category-filter" data-aos="fade-up" id="categoryFilter">
+                    <button class="filter-btn active" data-category="all" data-translate="filter_all">All</button>
+                    <!-- Category buttons will be loaded dynamically -->
+                </div>
+
+                <div class="products-grid" id="productsGrid">
+                    <!-- Products will be loaded dynamically -->
+                </div>
+
+                <div class="products-loader" id="productsLoader" style="display: none;">
+                    <div class="spinner"></div>
+                </div>
+
+                <div class="load-more-wrapper" data-aos="fade-up">
+                    <button class="btn btn-outline" id="loadMoreBtn" data-translate="load_more">Load More</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Promotional Banner -->
+        <section class="promo-banner" data-aos="fade-up">
+            <div class="container">
+                <div class="promo-content">
+                    <div class="promo-text">
+                        <h3 data-translate="promo_title">Special Offer!</h3>
+                        <p data-translate="promo_desc">Get 20% off on your first order</p>
+                    </div>
+                    <a href="#products" class="btn btn-light" data-translate="shop_now">Shop Now</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section" id="contact">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2 class="section-title" data-translate="contact_title">Contact Us</h2>
+                    <p class="section-subtitle" data-translate="contact_subtitle">We'd love to hear from you</p>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-info" data-aos="fade-right">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4 data-translate="contact_address">Address</h4>
+                                <p id="contactAddress">Colombo, Sri Lanka</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4 data-translate="contact_phone">Phone</h4>
+                                <p id="contactPhone">+94 77 123 4567</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4 data-translate="contact_email">Email</h4>
+                                <p id="contactEmail">info@danuratextiles.com</p>
+                            </div>
+                        </div>
+                        <div class="social-links">
+                            <a href="#" class="social-link" id="socialFacebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-link" id="socialInstagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link" id="socialWhatsapp"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                    <div class="contact-form-wrapper" data-aos="fade-left">
+                        <form class="contact-form" id="contactForm">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Your Name" required data-translate-placeholder="form_name">
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" class="form-control" placeholder="Phone Number" required data-translate-placeholder="form_phone">
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Email Address" data-translate-placeholder="form_email">
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" rows="4" placeholder="Your Message" required data-translate-placeholder="form_message"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block" data-translate="send_message">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="assets/logo.png" alt="Danura Textiles" class="footer-logo">
+                    <p class="footer-desc" data-translate="footer_desc">Quality textiles for every occasion. Your trusted partner for premium fabrics in Sri Lanka.</p>
+                </div>
+                <div class="footer-links">
+                    <h4 data-translate="footer_quick_links">Quick Links</h4>
+                    <ul>
+                        <li><a href="#home" data-translate="nav_home">Home</a></li>
+                        <li><a href="#products" data-translate="nav_products">Products</a></li>
+                        <li><a href="#categories" data-translate="nav_categories">Categories</a></li>
+                        <li><a href="#contact" data-translate="nav_contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4 data-translate="footer_customer_service">Customer Service</h4>
+                    <ul>
+                        <li><a href="#" data-translate="footer_shipping">Shipping Info</a></li>
+                        <li><a href="#" data-translate="footer_returns">Returns</a></li>
+                        <li><a href="#" data-translate="footer_faq">FAQ</a></li>
+                        <li><a href="#" data-translate="footer_privacy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h4 data-translate="footer_newsletter">Newsletter</h4>
+                    <p data-translate="footer_newsletter_desc">Subscribe to get special offers</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" placeholder="Your email" data-translate-placeholder="form_email">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Danura Textiles. <span data-translate="footer_rights">All rights reserved.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Product Quick View Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-body">
+                <div class="product-gallery">
+                    <div class="main-image">
+                        <img src="" alt="" id="modalMainImage">
+                    </div>
+                    <div class="thumbnail-list" id="modalThumbnails"></div>
+                </div>
+                <div class="product-details">
+                    <h2 class="product-title" id="modalProductTitle"></h2>
+                    <div class="product-price" id="modalProductPrice"></div>
+                    <p class="product-description" id="modalProductDescription"></p>
+                    <div class="product-quantity">
+                        <label data-translate="quantity">Quantity:</label>
+                        <div class="quantity-selector">
+                            <button class="qty-btn minus" id="modalQtyMinus">-</button>
+                            <input type="number" value="1" min="1" id="modalQty">
+                            <button class="qty-btn plus" id="modalQtyPlus">+</button>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-add-cart" id="modalAddToCart" data-translate="add_to_cart">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal checkout-modal" id="checkoutModal">
+        <div class="modal-content checkout-content">
+            <button class="modal-close" id="checkoutClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="checkout-wrapper">
+                <h2 class="checkout-title" data-translate="checkout_title">Checkout</h2>
+                
+                <!-- Checkout Steps -->
+                <div class="checkout-steps">
+                    <div class="step active" data-step="1">
+                        <span class="step-number">1</span>
+                        <span class="step-text" data-translate="step_delivery">Delivery</span>
+                    </div>
+                    <div class="step" data-step="2">
+                        <span class="step-number">2</span>
+                        <span class="step-text" data-translate="step_payment">Payment</span>
+                    </div>
+                    <div class="step" data-step="3">
+                        <span class="step-number">3</span>
+                        <span class="step-text" data-translate="step_confirm">Confirm</span>
+                    </div>
+                </div>
+
+                <!-- Step 1: Delivery Details -->
+                <div class="checkout-step-content" id="step1Content">
+                    <form id="deliveryForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label data-translate="form_name">Full Name *</label>
+                                <input type="text" class="form-control" id="customerName" required>
+                            </div>
+                            <div class="form-group">
+                                <label data-translate="form_phone">Phone Number *</label>
+                                <input type="tel" class="form-control" id="customerPhone" required pattern="[0-9]{10}">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label data-translate="form_district">District *</label>
+                                <select class="form-control" id="customerDistrict" required>
+                                    <option value="">Select District</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label data-translate="form_city">City (Optional)</label>
+                                <input type="text" class="form-control" id="customerCity">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label data-translate="form_address">Delivery Address *</label>
+                            <textarea class="form-control" id="customerAddress" rows="3" required></textarea>
+                        </div>
+                        <div class="delivery-info">
+                            <div class="delivery-charge-display">
+                                <span data-translate="delivery_charge">Delivery Charge:</span>
+                                <span id="deliveryChargeAmount">LKR 0.00</span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block" data-translate="continue_payment">Continue to Payment</button>
+                    </form>
+                </div>
+
+                <!-- Step 2: Payment Method -->
+                <div class="checkout-step-content" id="step2Content" style="display: none;">
+                    <div class="payment-methods" id="paymentMethods">
+                        <!-- Payment methods will be loaded dynamically -->
+                    </div>
+                    <div class="payment-details" id="paymentDetails">
+                        <!-- Payment details will show based on selection -->
+                    </div>
+                    <div class="checkout-buttons">
+                        <button class="btn btn-outline" id="backToDelivery" data-translate="back">Back</button>
+                        <button class="btn btn-primary" id="continueToConfirm" data-translate="continue_confirm">Continue</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Order Confirmation -->
+                <div class="checkout-step-content" id="step3Content" style="display: none;">
+                    <div class="order-summary">
+                        <h3 data-translate="order_summary">Order Summary</h3>
+                        <div class="summary-items" id="summaryItems"></div>
+                        <div class="summary-totals">
+                            <div class="summary-row">
+                                <span data-translate="subtotal">Subtotal:</span>
+                                <span id="summarySubtotal">LKR 0.00</span>
+                            </div>
+                            <div class="summary-row">
+                                <span data-translate="delivery_charge">Delivery:</span>
+                                <span id="summaryDelivery">LKR 0.00</span>
+                            </div>
+                            <div class="summary-row total">
+                                <span data-translate="total">Total:</span>
+                                <span id="summaryTotal">LKR 0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="delivery-summary">
+                        <h4 data-translate="delivery_details">Delivery Details</h4>
+                        <p id="summaryDeliveryDetails"></p>
+                    </div>
+                    <div class="payment-summary">
+                        <h4 data-translate="payment_method">Payment Method</h4>
+                        <p id="summaryPaymentMethod"></p>
+                    </div>
+                    <div class="checkout-buttons">
+                        <button class="btn btn-outline" id="backToPayment" data-translate="back">Back</button>
+                        <button class="btn btn-primary btn-lg" id="placeOrderBtn" data-translate="place_order">Place Order</button>
+                    </div>
+                </div>
+
+                <!-- Order Success -->
+                <div class="checkout-step-content order-success" id="orderSuccess" style="display: none;">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h2 data-translate="order_success">Order Placed Successfully!</h2>
+                    <p data-translate="order_success_msg">Thank you for your order. We will contact you soon.</p>
+                    <div class="order-number">
+                        <span data-translate="order_number">Order Number:</span>
+                        <strong id="orderNumberDisplay"></strong>
+                    </div>
+                    <button class="btn btn-primary" id="continueShopping" data-translate="continue_shopping">Continue Shopping</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-content">
+            <i class="toast-icon"></i>
+            <span class="toast-message"></span>
+        </div>
+    </div>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/94771234567" class="whatsapp-float" target="_blank" id="whatsappFloat">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/checkout.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
